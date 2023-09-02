@@ -132,7 +132,7 @@ def Main():
             side = int(input("What would you like the side length to be?\nANS:"))
             
             CLS()
-            print(f"Triangle Specs: left={side} top={side} right={round(math.sqrt(2) * side, 2)}\n")
+            print(f"Triangle Specs: left={side} top={side} right={round(math.sqrt(s) * side, 5)}\n")
             for x in range(side, 0, -1):
                 for y in range(x):
                     print("*", end="")
@@ -152,7 +152,81 @@ def Main():
     
     #Shows currency by dollars to pennies
     def CurrencyCalculator():
-        print("CurrencyCalculator")
+        #Array slot for each currency from $100 to $0.01
+        array = [0,0,0,0,0,0,0,0,0,0]
+        
+        amount = float(input("How much money do you have? (Ex: 186.41 for $186.41)\nANS:"))
+        
+        message = "Your exact change is "
+        
+        if(amount >= 100.00):
+            while amount >=100.00:
+                array[0] += 1
+                amount -= (100.00)
+                amount = round(amount, 2)
+            message += f"{array[0]} 100(s),"
+        if(amount >= 50.00):
+            while amount >=50.00:
+                array[1] += 1
+                amount -= (50.00)
+                amount = round(amount, 2)
+            message += f"{array[1]} 50(s),"
+        if(amount >= 20.00):
+            while amount >=20.00:
+                array[2] += 1
+                amount -= (20.00)
+                amount = round(amount, 2)
+            message += f"{array[2]} 20(s),"
+        if(amount >= 10.00):
+            while amount >=10.00:
+                array[3] += 1
+                amount -= (10.00)
+                amount = round(amount, 2)
+            message += f"{array[3]} 10(s),"
+        if(amount >= 5.00):
+            while amount >=5.00:
+                array[4] += 1
+                amount -= (5.00)
+                amount = round(amount, 2)
+            message += f"{array[4]} 5(s),"
+        if(amount >= 1.00):
+            while amount >=1.00:
+                array[5] += 1
+                amount -= (1.00)
+                amount = round(amount, 2)
+            message += f"{array[5]} 1(s),"
+        if(amount >= 0.25):
+            while amount >=0.25:
+                array[6] += 1
+                amount -= 0.25
+                amount = round(amount, 2)
+            message += f"{array[6]} quarter(s),"
+        if(amount >= 0.10):
+            while amount >=0.10:
+                array[7] += 1
+                amount -= 0.10
+                amount = round(amount, 2)
+            message += f"{array[7]} dime(s),"
+        if(amount >= 0.05):
+            while amount >=0.05:
+                array[8] += 1
+                amount -= 0.05
+                amount = round(amount, 2)
+            message += f"{array[8]} nickel(s),"
+        if(amount >= 0.01):
+            while amount >= 0.01:
+                array[9] += 1
+                amount -= 0.01
+                amount = round(amount, 2)
+            message += f"{array[9]} penny(s),"
+        
+        if(len(message) == 21):
+            message += "nothing"
+        else:
+            message = message[:-1]
+        
+        print(message)
+                
         
     #***************************************** Defining Main Functions End ******************************************
     
