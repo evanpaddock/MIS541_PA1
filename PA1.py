@@ -11,6 +11,7 @@ def Main():
     
     from time import sleep
     import random
+    import math
     
     #***************************************** Defining Functions Start******************************************
     
@@ -110,13 +111,34 @@ def Main():
             elif(choice == "2"):
                 RightTriangle()
         
+        #Takes a length and width and draws a triangle
         def Rectangle():
-            print("Rectangle")
-            sleep(2)
+            length = int(input("What would you like the length to be?\nANS:"))
+            CLS()
+            width = int(input("What would you like the width to be?\nANS:"))
             
+            CLS();
+            print(f"Rectangle Specs: length={length} width={width}\n")
+            for x in range(length):
+                for y in range(width):
+                    print("*", end=" ")
+                    
+                print()
+                
+            sleep(5)
+            
+        #Gets side length and prints triangle in reverse length order
         def RightTriangle():
-            print("Right Triangle")
-            sleep(2)
+            side = int(input("What would you like the side length to be?\nANS:"))
+            
+            CLS()
+            print(f"Triangle Specs: left={side} top={side} right={round(math.sqrt(2) * side, 2)}\n")
+            for x in range(side, 0, -1):
+                for y in range(x):
+                    print("*", end="")
+                print()
+                
+            sleep(5)
         
         choice = MenuValidLoop()
         
