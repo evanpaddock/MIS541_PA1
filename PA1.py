@@ -102,11 +102,10 @@ def Main():
         
         compChoice = random.randint(1, 3)
         
-        
         if(choice == compChoice):
             print(f"You both chose {choices[choice]}. The game ties!")
         else:
-            if(choice < compChoice and compChoice != choice + 1):
+            if(choice < compChoice and compChoice != choice + 1 or choice > compChoice and compChoice != choice - 2):
                 print(f"You chose {choices[choice]} which beats your opponent that chose {choices[compChoice]}!")
             else:
                 print(f"You chose {choices[choice]} which loses to your opponent that chose {choices[compChoice]}!")
