@@ -68,7 +68,48 @@ def Main():
         
     #Rock Paper Scissors Game
     def RPS():
-        print("RPS")
+        def MainMenu():
+            print("What do you choose?")
+            print(" 1: Rock")
+            print(" 2: Paper")
+            print(" 3: Scissors")
+            return input("Selection: ")
+                
+        def IsNotValid(choice):
+            if(choice == "1"):
+                return
+            elif(choice == "2"):
+                return
+            elif(choice == "3"):
+                return
+            else:
+                return True
+                
+        def MenuValidLoop():
+            CLS()
+            
+            choice = MainMenu()
+            
+            while IsNotValid(choice):
+                print("Invalid option. Please choose again.\n")
+                choice = MainMenu()
+                
+            return choice
+            
+        choices = ["", "Rock", "Paper", "Scissors"]
+            
+        choice = int(MenuValidLoop())
+        
+        compChoice = random.randint(1, 3)
+        
+        
+        if(choice == compChoice):
+            print(f"You both chose {choices[choice]}. The game ties!")
+        else:
+            if(choice < compChoice and compChoice != choice + 1):
+                print(f"You chose {choices[choice]} which beats your opponent that chose {choices[compChoice]}!")
+            else:
+                print(f"You chose {choices[choice]} which loses to your opponent that chose {choices[compChoice]}!")
     
     #Draws rectange by length and width and inverted right trianle by length
     def DrawShapes():
@@ -132,7 +173,7 @@ def Main():
             side = int(input("What would you like the side length to be?\nANS:"))
             
             CLS()
-            print(f"Triangle Specs: left={side} top={side} right={round(math.sqrt(s) * side, 5)}\n")
+            print(f"Triangle Specs: left={side} top={side} right={round(math.sqrt(2) * side, 5)}\n")
             for x in range(side, 0, -1):
                 for y in range(x):
                     print("*", end="")
@@ -148,7 +189,6 @@ def Main():
             choice = MenuValidLoop()
             
         Main()
-        
     
     #Shows currency by dollars to pennies
     def CurrencyCalculator():
