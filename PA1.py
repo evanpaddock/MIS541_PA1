@@ -15,7 +15,7 @@ def Main():
     
     #***************************************** Defining Functions Start******************************************
     
-    #Shows main menu choices and get choice
+    #Shows main menu choices and gets choice
     def MainMenu():
         print("Welcome to Danish's Game")
         print("Please enter the number of the game you would like to play")
@@ -109,6 +109,9 @@ def Main():
                 print(f"You chose {choices[choice]} which beats your opponent that chose {choices[compChoice]}!")
             else:
                 print(f"You chose {choices[choice]} which loses to your opponent that chose {choices[compChoice]}!")
+                
+        sleep(3)
+        input("\nPress any key to continue")
     
     #Draws rectange by length and width and inverted right trianle by length
     def DrawShapes():
@@ -151,7 +154,7 @@ def Main():
             elif(choice == "2"):
                 RightTriangle()
         
-        #Takes a length and width and draws a triangle
+        #Takes a length and width and draws a rectangle
         def Rectangle():
             length = int(input("What would you like the length to be?\nANS:"))
             CLS()
@@ -165,7 +168,7 @@ def Main():
                     
                 print()
                 
-            sleep(5)
+            input("\nPress any key to continue")
             
         #Gets side length and prints triangle in reverse length order
         def RightTriangle():
@@ -175,10 +178,10 @@ def Main():
             print(f"Triangle Specs: left={side} top={side} right={round(math.sqrt(2) * side, 5)}\n")
             for x in range(side, 0, -1):
                 for y in range(x):
-                    print("*", end="")
+                    print("* ", end="")
                 print()
                 
-            sleep(5)
+            input("\nPress any key to continue")
         
         choice = MenuValidLoop()
         
@@ -265,6 +268,7 @@ def Main():
             message = message[:-1]
         
         print(message)
+        input("\nPress any key to continue")
                 
         
     #***************************************** Defining Main Functions End ******************************************
@@ -280,7 +284,6 @@ def Main():
         CLS() 
         
         RunChoice(choice)
-        sleep(5)
         
         CLS()
         
