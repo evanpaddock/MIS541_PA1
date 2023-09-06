@@ -166,7 +166,7 @@ def Main():
                     return True
         
         #Reasks input while sideDistance is not valid, returns sideDistance once allowed       
-        def InvalidResponseHandler(isNotValid, message):
+        def InvalidResponseHandler(isNotValid, message, sideDistance):
             while isNotValid:
                 CLS()
                 print("Invalid response. Please try again.\n")
@@ -181,13 +181,13 @@ def Main():
             length = input("What would you like the length to be?\nANS:")
             isNotValid = TestIsNotValidInput(length)
             
-            length = int(InvalidResponseHandler(isNotValid, "What would you like the length to be?\nANS:"))
+            length = int(InvalidResponseHandler(isNotValid, "What would you like the length to be?\nANS:", length))
             
             CLS()
             width = input("What would you like the width to be?\nANS:")
             isNotValid = TestIsNotValidInput(width)
             
-            width = int(InvalidResponseHandler(isNotValid, "What would you like the width to be?\nANS:"))
+            width = int(InvalidResponseHandler(isNotValid, "What would you like the width to be?\nANS:", width))
             
             CLS();
             print(f"Rectangle Specs: length={length} width={width}\n")
@@ -204,7 +204,7 @@ def Main():
             side = input("What would you like the side length to be?\nANS:")
             isNotValid = TestIsNotValidInput(side)
             
-            side = int(InvalidResponseHandler(isNotValid, "What would you like the side length to be?\nANS:"))
+            side = int(InvalidResponseHandler(isNotValid, "What would you like the side length to be?\nANS:", side))
             
             CLS()
             print(f"Triangle Specs: left={side} top={side} right={round(math.sqrt(2) * side, 5)}\n")
@@ -255,28 +255,38 @@ def Main():
         
         amount = float(InvalidValueHandler(ValidityBool, amount))
         
+        while (len(str(amount)) < 4):
+            str(amount) + "0"
+            
         message = "Your exact change is "
         
         count = 0
         
         CLS()
         
-        print(f"Amount enter: {amount}\n")
-        print("Change:", end="")
+        print(f"Amount entered: ${amount}\n")
+        
+        float(amount)
+        
         # Loop for each currency choice
         for denomination in currencies:
             while amount >= denomination:
                 amount -= denomination
                 amount = round(amount, 2)
                 countOfCurrencies[count] += 1
+                
+                # Changes the message output based on count per denomination
             if(countOfCurrencies[count] > 0):
                 if(countOfCurrencies[count] > 1):
                     if(currencyName[count][len(currencyName[count]) - 1] == "y"):
-                        message += f"{countOfCurrencies[count]} {currencyName[count][:-1]}ies,"
+                        # If currency name ends in a y changes it to an "ies" ending
+                        message += f"{countOfCurrencies[count]} {currencyName[count][:-1]}ies, "
                     else:
-                        message += f"{countOfCurrencies[count]} {currencyName[count]}s,"
+                        # Else currency name ends in "s" ending
+                        message += f"{countOfCurrencies[count]} {currencyName[count]}s, "
                 else:
-                    message += f"{countOfCurrencies[count]} {currencyName[count]},"
+                    # If only one count of that denomination, doesn't add plural ending
+                    message += f"{countOfCurrencies[count]} {currencyName[count]}, "
                 
             count += 1
                    
@@ -284,8 +294,8 @@ def Main():
         if(len(message) == 21):
             message += "nothing"
         else:
-            # Removes the last comma
-            message = message[:-1]
+            # Removes the last comma and space
+            message = message[:-2]
         
         print(message)
         input("\nPress any key to continue")
@@ -319,6 +329,4 @@ def Main():
 #***************************************** Program Start *****************************************#      
     
 Main()
-        
-        
-        
+
