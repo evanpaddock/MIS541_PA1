@@ -91,6 +91,7 @@ def Main():
             choice = MainMenu()
             
             while IsNotValid(choice):
+                CLS()
                 print("Invalid option. Please choose again.\n")
                 choice = MainMenu()
                 
@@ -245,6 +246,7 @@ def Main():
         #Array slot for each currency from $100 to $0.01
         countOfCurrencies = [0,0,0,0,0,0,0,0,0,0]
         
+        #Parallel array for the name for each currency
         currencies = [100.00,50.00,20.00,10.00,5.00,1.00,0.25,0.10,0.05,0.01]
         
         currencyName = ["Hundred", "Fifty", "Twenty", "Ten", "Five", "One", "Quarter", "Dime", "Nickel", "Penny"]
@@ -254,9 +256,6 @@ def Main():
         ValidityBool = TestIfValidAmount(amount)
         
         amount = float(InvalidValueHandler(ValidityBool, amount))
-        
-        while (len(str(amount)) < 4):
-            str(amount) + "0"
             
         message = "Your exact change is "
         
@@ -265,8 +264,6 @@ def Main():
         CLS()
         
         print(f"Amount entered: ${amount}\n")
-        
-        float(amount)
         
         # Loop for each currency choice
         for denomination in currencies:
@@ -288,8 +285,7 @@ def Main():
                     # If only one count of that denomination, doesn't add plural ending
                     message += f"{countOfCurrencies[count]} {currencyName[count]}, "
                 
-            count += 1
-                   
+            count += 1    
         
         if(len(message) == 21):
             message += "nothing"
@@ -321,7 +317,7 @@ def Main():
         
     CLS()
     print("Thank you for playing Danish's games! Bye Bye!")
-    sleep(3)
+    sleep(1.5)
     CLS()
         
     #***************************************** Main Function End ******************************************
