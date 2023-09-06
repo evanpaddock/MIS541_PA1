@@ -249,7 +249,7 @@ def Main():
         
         ValidityBool = TestIfValidAmount(amount)
         
-        amount = InvalidValueHandler(ValidityBool)
+        amount = float(InvalidValueHandler(ValidityBool))
         
         message = "Your exact change is "
         
