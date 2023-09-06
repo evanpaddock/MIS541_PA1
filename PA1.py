@@ -19,21 +19,21 @@ def Main():
     def MainMenu():
         print("Welcome to Danish's Game")
         print("Please enter the number of the game you would like to play")
-        print(" 1: Rock Paper Scissors")
-        print(" 2: Draw shapes")
-        print(" 3: Currency Calculator")
-        print("-1: exit")
+        print("1: Rock Paper Scissors")
+        print("2: Draw shapes")
+        print("3: Currency Calculator")
+        print("4: exit")
         return input()
     
     #Checks if the choice is valid for the given menu
     def IsNotValid(choice):
-        if(choice == "-1"):
-            return
-        elif(choice == "1"):
+        if(choice == "1"):
             return
         elif(choice == "2"):
             return
         elif(choice == "3"):
+            return
+        elif(choice == "4"):
             return
         else:
             return True
@@ -119,9 +119,9 @@ def Main():
         #Draw Shapes Game Main Menu
         def MainMenu():
             print("Please choose a shape!")
-            print(" 1. Rectangle")
-            print(" 2. Right Triangle")
-            print("-1. Go Back")
+            print("1. Rectangle")
+            print("2. Isosceles Right Triangle")
+            print("3. Go Back")
             return input("Selection: ")
         
         #Draw Shapes Main Menu Validation Loop
@@ -131,17 +131,18 @@ def Main():
             choice = MainMenu()
             
             while IsNotValid(choice):
+                CLS()
                 print("Invalid option. Please choose again.\n")
                 choice = MainMenu()
                 
             return choice
         
         def IsNotValid(choice):
-            if(choice == "-1"):
-                return
-            elif(choice == "1"):
+            if(choice == "1"):
                 return
             elif(choice == "2"):
+                return
+            elif(choice == "3"):
                 return
             else:
                 return True
@@ -153,12 +154,40 @@ def Main():
                 Rectangle()
             elif(choice == "2"):
                 RightTriangle()
+                
+        #Tests if the given length or width is a valid response
+        def TestIsNotValidInput(sideDistance):
+                try:
+                    if(int(sideDistance) >= 2):
+                        return
+                    else:
+                        return True
+                except ValueError:
+                    return True
+        
+        #Reasks input while sideDistance is not valid, returns sideDistance once allowed       
+        def InvalidResponseHandler(isNotValid, message):
+            while isNotValid:
+                CLS()
+                print("Invalid response. Please try again.\n")
+                sideDistance = input(message)
+                isNotValid = TestIsNotValidInput(sideDistance)
+            return sideDistance
+                
         
         #Takes a length and width and draws a rectangle
         def Rectangle():
-            length = int(input("What would you like the length to be?\nANS:"))
+            
+            length = input("What would you like the length to be?\nANS:")
+            isNotValid = TestIsNotValidInput(length)
+            
+            length = int(InvalidResponseHandler(isNotValid, "What would you like the length to be?\nANS:"))
+            
             CLS()
-            width = int(input("What would you like the width to be?\nANS:"))
+            width = input("What would you like the width to be?\nANS:")
+            isNotValid = TestIsNotValidInput(width)
+            
+            width = int(InvalidResponseHandler(isNotValid, "What would you like the width to be?\nANS:"))
             
             CLS();
             print(f"Rectangle Specs: length={length} width={width}\n")
@@ -172,7 +201,10 @@ def Main():
             
         #Gets side length and prints triangle in reverse length order
         def RightTriangle():
-            side = int(input("What would you like the side length to be?\nANS:"))
+            side = input("What would you like the side length to be?\nANS:")
+            isNotValid = TestIsNotValidInput(side)
+            
+            side = int(InvalidResponseHandler(isNotValid, "What would you like the side length to be?\nANS:"))
             
             CLS()
             print(f"Triangle Specs: left={side} top={side} right={round(math.sqrt(2) * side, 5)}\n")
@@ -185,7 +217,7 @@ def Main():
         
         choice = MenuValidLoop()
         
-        while choice != "-1":
+        while choice != "3":
             RunChoice(choice)
             
             choice = MenuValidLoop()
@@ -194,10 +226,30 @@ def Main():
     
     #Shows currency by dollars to pennies
     def CurrencyCalculator():
+        def TestIfValidAmount(amount):
+            try:
+                if(float(amount) > 0.00):
+                    return
+                else:
+                    return True
+            except Exception:
+                return True
+                
+        def InvalidValueHandler(ValidityBool):
+            while ValidityBool:
+                CLS()
+                print("Invalid amount. Enter a value greater than $0.00, in the format 0.00.\n")
+                amount = input("How much money do you have? (Ex: 186.41 for $186.41)\nANS:")
+                ValidityBool = TestIfValidAmount(amount)
+            return amount   
         #Array slot for each currency from $100 to $0.01
         array = [0,0,0,0,0,0,0,0,0,0]
         
-        amount = float(input("How much money do you have? (Ex: 186.41 for $186.41)\nANS:"))
+        amount = input("How much money do you have? (Ex: 186.41 for $186.41)\nANS:")
+        
+        ValidityBool = TestIfValidAmount(amount)
+        
+        amount = InvalidValueHandler(ValidityBool)
         
         message = "Your exact change is "
         
@@ -280,7 +332,7 @@ def Main():
     
     choice = MenuValidLoop()
         
-    while choice != "-1":
+    while choice != "4":
         CLS() 
         
         RunChoice(choice)
