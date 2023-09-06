@@ -247,6 +247,8 @@ def Main():
         
         currencies = [100.00,50.00,20.00,10.00,5.00,1.00,0.25,0.10,0.05,0.01]
         
+        currencyName = ["Hundred", "Fifty", "Twenty", "Ten", "Five", "One", "Quarter", "Dime", "Nickel", "Penny"]
+        
         amount = input("How much money do you have? (Ex: 186.41 for $186.41)\nANS:")
         
         ValidityBool = TestIfValidAmount(amount)
@@ -257,6 +259,10 @@ def Main():
         
         count = 0
         
+        CLS()
+        
+        print(f"Amount enter: {amount}\n")
+        print("Change:", end="")
         # Loop for each currency choice
         for denomination in currencies:
             while amount >= denomination:
@@ -264,16 +270,21 @@ def Main():
                 amount = round(amount, 2)
                 countOfCurrencies[count] += 1
             if(countOfCurrencies[count] > 0):
-                message += f"{countOfCurrencies[count]} {denomination}(s),"
-            else:
-                message += ""
+                if(countOfCurrencies[count] > 1):
+                    if(currencyName[count][len(currencyName[count]) - 1] == "y"):
+                        message += f"{countOfCurrencies[count]} {currencyName[count][:-1]}ies,"
+                    else:
+                        message += f"{countOfCurrencies[count]} {currencyName[count]}s,"
+                else:
+                    message += f"{countOfCurrencies[count]} {currencyName[count]},"
+                
             count += 1
-            
-            
+                   
         
         if(len(message) == 21):
             message += "nothing"
         else:
+            # Removes the last comma
             message = message[:-1]
         
         print(message)
