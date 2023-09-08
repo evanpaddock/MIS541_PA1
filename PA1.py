@@ -8,7 +8,7 @@ Created on Wed Aug 30 19:10:38 2023
 #Main Start
 def Main():
     #importing necessary items
-    
+    from decimal import Decimal, ROUND_HALF_UP
     from time import sleep
     import random
     import math
@@ -263,7 +263,9 @@ def Main():
         
         CLS()
         
-        print(f"Amount entered: ${amount}\n")
+        currency = "${:,.2f}".format(amount)
+        
+        print(f"Amount entered: ${currency}\n")
         
         # Loop for each currency choice
         for denomination in currencies:
