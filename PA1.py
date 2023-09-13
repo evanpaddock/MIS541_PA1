@@ -4,11 +4,11 @@ Created on Wed Aug 30 19:10:38 2023
 
 @author: Evan Paddock
 """
-
+# Extras: Clears screen after each step to keep console clean,
+        
 #Main Start
 def Main():
     #importing necessary items
-    from decimal import Decimal, ROUND_HALF_UP
     from time import sleep
     import random
     import math
@@ -243,6 +243,7 @@ def Main():
                 amount = input("How much money do you have? (Ex: 186.41 for $186.41)\nANS:")
                 ValidityBool = TestIfValidAmount(amount)
             return amount 
+        
         #Array slot for each currency from $100 to $0.01
         countOfCurrencies = [0,0,0,0,0,0,0,0,0,0]
         
