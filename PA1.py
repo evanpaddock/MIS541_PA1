@@ -4,7 +4,8 @@ Created on Wed Aug 30 19:10:38 2023
 
 @author: Evan Paddock
 """
-# Extras: Clears screen after each step to keep console clean,
+# Extras: Clears screen after each step to keep console clean, Currency converter only outputs bills needed with correct plurality, Currency converter has more concise math, 
+#   Triangle and Rectangle have specs listed for sides, Go back option for DrawShapes
         
 #Main Start
 def Main():
